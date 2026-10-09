@@ -163,26 +163,30 @@ a:focus-visible {
 }
 
 /*
-  Убираем стандартные отступы и маркеры списка навигации.
+  Навигационное меню выстраивается в строку через Flexbox.
 */
 .site-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-md);
   padding: 0;
   margin: var(--space-md) 0 0;
   list-style: none;
 }
 
-.site-nav__list li {
-  margin-bottom: var(--space-sm);
-}
-
 .site-nav__list a {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-md);
   color: var(--color-primary);
   text-decoration: none;
+  border-radius: var(--radius-sm);
 }
 
 .site-nav__list a:hover {
-  color: var(--color-primary-dark);
-  text-decoration: underline;
+  color: var(--color-white);
+  background-color: var(--color-primary);
 }
 
 /*
@@ -228,10 +232,22 @@ a:focus-visible {
 }
 
 /*
-  Карточка товара.
+  Сетка карточек товаров через CSS Grid.
+*/
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+/*
+  Карточка товара: внутренняя структура через Flexbox.
 */
 .product-card {
-  margin-bottom: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: 0;
   padding: var(--space-md);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -242,8 +258,88 @@ a:focus-visible {
   border-color: var(--color-primary);
 }
 
-.product-card h3 {
+.product-card h3,
+.product-card p {
+  margin: 0;
+}
+
+/*
+  Кнопка прижимается к нижней части карточки.
+*/
+.product-card .button {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/*
+  Страница каталога: «фильтры + товары» через CSS Grid.
+*/
+.catalog-layout {
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-xl);
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  grid-template-areas: "filters products";
+  gap: var(--space-lg);
+}
+
+.catalog-filters {
+  grid-area: filters;
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.catalog-filters h2,
+.catalog-products h2 {
   margin-top: 0;
+}
+
+.catalog-products {
+  grid-area: products;
+}
+
+/*
+  Форма фильтров.
+*/
+.filters-form {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.filters-form fieldset {
+  margin: 0;
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.filters-form legend {
+  font-weight: 700;
+}
+
+.filters-form label {
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.filters-form input[type="number"] {
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: var(--space-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font: inherit;
+}
+
+.filters-form input[type="number"]:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.filters-form .button {
+  justify-self: start;
 }
 
 /*
