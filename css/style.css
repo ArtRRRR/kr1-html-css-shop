@@ -79,6 +79,21 @@ footer {
   background-color: var(--color-surface);
 }
 
+/*
+  Плавная прокрутка к якорям.
+*/
+html {
+  scroll-behavior: smooth;
+}
+
+/*
+  Подсветка элемента, к которому выполнен переход по якорной ссылке.
+*/
+:target {
+  outline: 2px dashed var(--color-primary);
+  outline-offset: 4px;
+}
+
 /* ===============================
    3. Общие элементы интерфейса
    =============================== */
@@ -168,6 +183,25 @@ a:focus-visible {
 .site-nav__list a:hover {
   color: var(--color-primary-dark);
   text-decoration: underline;
+}
+
+/*
+  Хлебные крошки на внутренних страницах.
+*/
+.breadcrumbs {
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-md);
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.breadcrumbs a {
+  color: var(--color-primary);
+}
+
+.breadcrumbs span::before {
+  content: " / ";
+  color: var(--color-muted);
 }
 
 /*
